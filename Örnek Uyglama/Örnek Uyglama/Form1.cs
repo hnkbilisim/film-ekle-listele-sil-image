@@ -15,6 +15,7 @@ namespace Örnek_Uyglama
     public partial class Form1 : Form
     {
         string baglanti = "Server=localhost;Database=film_arsiv;Uid=root;Pwd=;";
+
         public Form1()
         {
             InitializeComponent();
@@ -107,6 +108,40 @@ namespace Örnek_Uyglama
             yeniFilmForm.ShowDialog();
             DgwDoldur();
             
+        }
+
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            if (dgwFilmler.SelectedRows.Count > 0)
+            {
+                using (MySqlConnection baglan = new MySqlConnection(baglanti))
+                {
+                    baglan.Open();
+                    string sorgu = "DELETE FROM filmler WHERE film_id=@satirid";
+                    MySqlCommand cmd = new MySqlCommand(sorgu,baglan);
+                    cmd.Parameters.AddWithValue("@satirid", dgwFilmler.SelectedRows[0].Cells["film_id"].Value.ToString());
+
+                    //Resim silme resimyol
+                    string posterYol = Path.Combine(Environment.CurrentDirectory, "poster", dgwFilmler.SelectedRows[0].Cells["poster"].Value.ToString());
+
+                    string filmAd = dgwFilmler.SelectedRows[0].Cells["film_ad"].Value.ToString();
+                    if (DialogResult.Yes == MessageBox.Show("Film Adı:"+filmAd, "Film Sil",MessageBoxButtons.YesNo,MessageBoxIcon.Error))
+                    {
+                        cmd.ExecuteNonQuery();
+                        DgwDoldur();
+
+                        //resim silme işlemi
+                        if(File.Exists(posterYol))
+                        {
+                            File.Delete(posterYol);
+                        }
+
+                    }
+
+
+
+                }
+            }
         }
     }
 }

@@ -206,8 +206,8 @@
             this.btnSil.Name = "btnSil";
             this.btnSil.Size = new System.Drawing.Size(133, 136);
             this.btnSil.TabIndex = 33;
-            this.btnSil.Text = "Film Sil";
             this.btnSil.UseVisualStyleBackColor = true;
+            this.btnSil.Click += new System.EventHandler(this.btnSil_Click);
             // 
             // btnGuncelle
             // 
@@ -216,7 +216,6 @@
             this.btnGuncelle.Name = "btnGuncelle";
             this.btnGuncelle.Size = new System.Drawing.Size(133, 139);
             this.btnGuncelle.TabIndex = 32;
-            this.btnGuncelle.Text = "Film Güncelle";
             this.btnGuncelle.UseVisualStyleBackColor = true;
             // 
             // btnYeniFilmForm
@@ -226,7 +225,6 @@
             this.btnYeniFilmForm.Name = "btnYeniFilmForm";
             this.btnYeniFilmForm.Size = new System.Drawing.Size(133, 140);
             this.btnYeniFilmForm.TabIndex = 31;
-            this.btnYeniFilmForm.Text = "Yeni Film Ekle";
             this.btnYeniFilmForm.UseVisualStyleBackColor = true;
             this.btnYeniFilmForm.Click += new System.EventHandler(this.btnYeniFilmForm_Click);
             // 
